@@ -89,6 +89,12 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 .tool .t-meta{color:var(--muted);font-size:12px;margin-top:4px}
 .tool .t-dir{color:var(--gold);font-size:12px;margin-top:6px}
 
+/* 预演系统内嵌 */
+.viewer-wrap{display:flex;flex-direction:column;gap:14px;flex:1;min-height:0}
+.viewer-frame{width:100%;flex:1;min-height:300px;border:1px solid var(--line);border-radius:16px;background:#08090b}
+.ext-btn{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--bg2);border:1px solid rgba(94,234,212,.35);color:var(--teal);border-radius:10px;padding:10px 18px;font-size:14px;text-decoration:none;transition:border-color .2s,background .2s}
+.ext-btn:hover{border-color:var(--teal);background:rgba(94,234,212,.08)}
+
 /* 底部导航 */
 .nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;
   padding:18px 32px;z-index:20}
@@ -127,7 +133,7 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 
 <div class="topbar">
   <div class="brand">仰观工坊 · YANGGUAN DOME STUDIO</div>
-  <div class="counter" id="counter">01 / 14</div>
+  <div class="counter" id="counter">01 / 15</div>
 </div>
 
 <main class="stage">
@@ -436,6 +442,17 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
       <div class="tool"><div class="t-name">Domeport</div><div class="t-meta">浏览器 / 客户端穹顶预演器，成片先在 3D 穹顶检查</div><div class="t-dir">教学与预演工具</div></div>
     </div>
     <p class="note stagger">六支柱对照：Shows 展演 · Research 研究 · Tools 工具 · Residencies 驻留 · Training 教学 · Networks 网络；本工坊需补驻留机制与对外网络板块。自研缺口：球面叙事语法、AI 球面一致性、世界模型交互。</p>
+  </section>
+
+  <!-- 12 SceneForge 预演系统 -->
+  <section class="view" data-title="预演系统">
+    <div class="kicker stagger">PREVIEW SYSTEM · SCENEFORGE</div>
+    <h2 class="stagger">舞台预演系统（本地子链接）</h2>
+    <div class="viewer-wrap">
+      <iframe class="viewer-frame" src="http://127.0.0.1:5175/" title="SceneForge Stage Viewer" loading="lazy"></iframe>
+      <a class="ext-btn stagger" href="http://127.0.0.1:5175/" target="_blank" rel="noopener noreferrer">在新标签页打开 SceneForge 预演系统 ↗</a>
+      <p class="note stagger">该入口连接本机本地服务（127.0.0.1:5175）：需先在本机运行 SceneForge 启动脚本并保持服务窗口开启，仅在同一台机器上可用。公网 Pages 与其他设备无法访问回环地址；线上演示时请替换为预演系统部署后的公开地址。</p>
+    </div>
   </section>
 
 </main>
