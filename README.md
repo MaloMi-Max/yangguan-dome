@@ -47,7 +47,7 @@ python3 -m http.server 8080
 - **Carto**：官方界面截图 + 现场点云照片；文档站与 GitHub `sat-mtl/carto`
 - **Domeport**：内嵌官方 H.264 演示视频（`sat-mtl.github.io/DomeportPro`），另附在线 Web 版与 Native 文档链接
 
-素材均为 Suite SAT / 各工具官方站点的外链引用，未打包进本仓库；若官方站点迁移或更换资源路径，需同步替换面板中的 URL。
+Koaia 海报、Carto 界面截图与现场点云照片已转存为豆包附件永久链接（本地压缩件见 `assets/`，映射表 `assets-map.json`）；其余工具海报与 Domeport 演示视频仍为 Suite SAT / 各工具官方站点外链引用，未打包进本仓库；若官方站点迁移或更换资源路径，需同步替换面板中的 URL。
 
 ## SAT 对标页补充内容（来自公众号供稿）
 
