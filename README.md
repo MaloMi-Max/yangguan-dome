@@ -2,6 +2,17 @@
 
 单文件静态网页，用于汇报时配合 PPT 做动画演示。原生 HTML/CSS/JS，无构建依赖，浏览器直接打开 `index.html` 即可。
 
+## SceneForge 穹顶舞台（已随仓库部署）
+
+- 在线入口：`./dome-stage/`（GitHub Pages 发布后即可访问）
+- 二次开发源码：`dome-stage-src/`（Vite + React Three Fiber，含全局 UV 对齐、屏幕采集、同步音视频录制、SSR/Bloom）
+- 本地开发：
+  ```bash
+  cd dome-stage-src
+  npm install   # 或 pnpm install
+  npm run dev
+  ```
+
 ## 本地预览
 
 直接双击 `index.html`，或在本目录启动静态服务：
@@ -59,7 +70,7 @@ python3 -m http.server 8080
 
 ## 预演系统子链接说明
 
-- 第 15 页内嵌 iframe 指向本机 `http://127.0.0.1:5175/`（SceneForge Stage Viewer），并附新标签页打开按钮。
+- 第 12 页内嵌 iframe 已指向仓库内静态构建 `./dome-stage/`，不再依赖本机 `127.0.0.1:5175`；GitHub Pages 与本地静态服务均可直接打开。
 - 该地址为回环地址，仅在运行 SceneForge 本地服务的同一台机器上可访问；需先启动其本地服务并保持窗口开启。
 - 公网 GitHub Pages 与其他设备无法访问 `127.0.0.1`；线上演示前需将预演系统单独部署为公开地址，并替换 iframe 与按钮中的 URL。
 

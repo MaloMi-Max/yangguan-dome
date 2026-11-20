@@ -21,6 +21,8 @@ button{font-family:var(--sans)}
   padding:18px 32px;z-index:20;font-size:13px;color:var(--muted);letter-spacing:.08em}
 .topbar .brand{font-family:var(--serif);color:var(--ink);letter-spacing:.2em}
 .topbar .counter{font-variant-numeric:tabular-nums}
+.topbar .enter-stage{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(94,234,212,.4);border-radius:999px;color:var(--teal);text-decoration:none;font-size:12px;letter-spacing:.08em;transition:background .3s ease,border-color .3s ease}
+.topbar .enter-stage:hover{background:rgba(94,234,212,.08);border-color:var(--teal)}
 
 /* 视图容器 */
 .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:72px 8vw 88px}
@@ -165,6 +167,7 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 <div class="topbar">
   <div class="brand">仰观工坊 · YANGGUAN DOME STUDIO</div>
   <div class="counter" id="counter">01 / 15</div>
+  <a class="enter-stage" href="./dome-stage/">进入穹顶舞台 ↗</a>
 </div>
 
 <main class="stage">
@@ -519,9 +522,9 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
     <div class="kicker stagger">PREVIEW SYSTEM · SCENEFORGE</div>
     <h2 class="stagger">舞台预演系统（本地子链接）</h2>
     <div class="viewer-wrap">
-      <iframe class="viewer-frame" src="http://127.0.0.1:5175/" title="SceneForge Stage Viewer" loading="lazy"></iframe>
-      <a class="ext-btn stagger" href="http://127.0.0.1:5175/" target="_blank" rel="noopener noreferrer">在新标签页打开 SceneForge 预演系统 ↗</a>
-      <p class="note stagger">该入口连接本机本地服务（127.0.0.1:5175）：需先在本机运行 SceneForge 启动脚本并保持服务窗口开启，仅在同一台机器上可用。公网 Pages 与其他设备无法访问回环地址；线上演示时请替换为预演系统部署后的公开地址。</p>
+      <iframe class="viewer-frame" src="./dome-stage/" title="SceneForge Stage Viewer" loading="lazy"></iframe>
+      <a class="ext-btn stagger" href="./dome-stage/" target="_blank" rel="noopener noreferrer">在新标签页打开 SceneForge 预演系统 ↗</a>
+      <p class="note stagger">预演系统已随仓库部署于 <code>dome-stage/</code> 目录，GitHub Pages 上可直接打开；本地二次开发源码见 <code>dome-stage-src/</code>。</p>
     </div>
   </section>
 
