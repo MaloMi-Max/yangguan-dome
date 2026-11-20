@@ -1,0 +1,2 @@
+line1 "quoted" <div class="x">a</div>
+line2 backslash \ end
