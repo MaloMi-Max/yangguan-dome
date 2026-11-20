@@ -112,6 +112,14 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 .case-card h3{font-family:var(--serif);font-size:19px;margin-bottom:10px}
 .case-card p{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:10px}
 
+/* 供稿图集 */
+.gallery{display:grid;gap:14px}
+.gal-3{grid-template-columns:repeat(3,1fr)}
+.gal-item{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg2)}
+.gal-item img{width:100%;display:block;background:#08090b}
+.gal-item .cap{padding:10px 12px;font-size:12px;color:var(--muted);line-height:1.5}
+.gal-item .cap b{color:var(--ink);font-weight:500}
+
 /* 预演系统内嵌 */
 .viewer-wrap{display:flex;flex-direction:column;gap:14px;flex:1;min-height:0}
 .viewer-frame{width:100%;flex:1;min-height:300px;border:1px solid var(--line);border-radius:16px;background:#08090b}
@@ -147,7 +155,7 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 
 .note{font-size:12px;color:var(--muted)}
 @media (max-width:900px){
-  .g3,.g2,.quad,.timeline,.road,.compare,.toolmap,.stat-row{grid-template-columns:1fr}
+  .g3,.g2,.quad,.timeline,.road,.compare,.toolmap,.stat-row,.gal-3{grid-template-columns:1fr}
   .view{inset:64px 6vw 80px}
 }
 </style>
@@ -464,6 +472,11 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
       <div class="stat"><div class="num">157 只</div><div class="lbl">扬声器 · 93.5 声道，SATIE 空间音频引擎发源地，可实时渲染上百独立声源</div></div>
       <div class="stat"><div class="num">180+</div><div class="lbl">驻留穹顶作品（影像／实时表演／音乐会／交互装置），早期产出最多的穹顶驻地之一</div></div>
     </div>
+    <div class="gallery gal-3 stagger">
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OPqDbQMtHokKgOx6IQJcgus7nah" alt="Satosphère 穹顶外景" loading="lazy"><div class="cap"><b>Satosphère 穹顶外景</b> · 蒙特利尔 SAT 园区</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/YfmqbS2axonuIpxD56Fco4mnnzc" alt="SAT 创意生态版图" loading="lazy"><div class="cap"><b>SAT 创意生态版图</b> · Satosphère / Pavillon / Espace SAT / Café SAT × Mutek · Hubblio</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/EKYebiEq9oTiqIxQtAJc5jpAnrd" alt="环绕式厅内现场" loading="lazy"><div class="cap"><b>环绕式厅内现场</b> · 观众席地而坐，被球面画面包裹</div></div>
+    </div>
     <div class="toolmap" id="toolmap">
       <div class="tool" data-tool="spatgris" role="button" tabindex="0"><div class="t-name">SpatGRIS</div><div class="t-meta">256 声源 × 256 扬声器空间音频；GPLv3</div><div class="t-dir">对应方向 ⑤ 多模态协同</div><div class="t-hint">查看工具演示 ↗</div></div>
       <div class="tool" data-tool="spm" role="button" tabindex="0"><div class="t-name">Spatial Protocol Mapper</div><div class="t-meta">一路 OSC 并行分发多空间化器；跨平台</div><div class="t-dir">对应方向 ③ 交互总线</div><div class="t-hint">查看工具演示 ↗</div></div>
@@ -471,6 +484,13 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
       <div class="tool" data-tool="koaia" role="button" tabindex="0"><div class="t-name">Koaia</div><div class="t-meta">舞台实时 AI 图像生成，多模型与图层混合</div><div class="t-dir">对应方向 ② 实时生成段</div><div class="t-hint">查看工具演示 ↗</div></div>
       <div class="tool" data-tool="carto" role="button" tabindex="0"><div class="t-name">Carto</div><div class="t-meta">无标记群体跟踪，深度相机 + LiDAR，100+ 人</div><div class="t-dir">对应方向 ④ 集体交互</div><div class="t-hint">查看工具演示 ↗</div></div>
       <div class="tool" data-tool="domeport" role="button" tabindex="0"><div class="t-name">Domeport</div><div class="t-meta">浏览器 / 客户端穹顶预演器，成片先在 3D 穹顶检查</div><div class="t-dir">教学与预演工具</div><div class="t-hint">查看工具演示 ↗</div></div>
+    </div>
+    <div class="gallery gal-3 stagger">
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Bwkfb4LyMoYiaLxGnnAcAG1mnvb" alt="穹顶光影现场 · 蓝色线构空间" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 蓝色线构空间</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/ZfMUbO7uGoGtsCxy5OrcmzHGnXg" alt="穹顶光影现场 · 光流复合体" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 光流复合体</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/IpO8bh2l2oKYzrxfFwRcWhQrnLb" alt="穹顶光影现场 · 像素螺旋" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 像素螺旋</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JHZJbJej6oYHlLxejjGcZto4nXd" alt="穹顶光影现场 · 螺旋线条与躺卧观众" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 螺旋线条与躺卧观众</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/T4xPb9QWPoRFZ7xJKNxctAYenUb" alt="现场实时 A/V 演出" loading="lazy"><div class="cap"><b>现场实时 A/V 演出</b> · 创作者控制台与球面投影</div></div>
     </div>
     <div class="card case-card stagger">
       <div class="tag">标杆案例 · Jules Roze《Syntropie》</div>
@@ -483,7 +503,15 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
         <li>其工作坊以 TouchDesigner 走完穹顶视觉流程：素材处理、画面编排与现场放映</li>
       </ul>
     </div>
-    <p class="note stagger">六支柱对照：Shows 展演 · Research 研究 · Tools 工具 · Residencies 驻留 · Training 教学 · Networks 网络；本工坊需补驻留机制与对外网络板块。自研缺口：球面叙事语法、AI 球面一致性、世界模型交互。</p>
+    <div class="gallery gal-3 stagger">
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/BMQubTV2poliEtx0yFHcdEdJnyU" alt="动态现场 · 灯光笔触与观众席" loading="lazy"><div class="cap"><b>动态现场</b> · 灯光笔触与观众席</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OEbabMQ6ao8GrBxNQBicQ28nnBw" alt="对照参照 · 拉斯维加斯 MSG Sphere 外景" loading="lazy"><div class="cap"><b>对照参照</b> · 拉斯维加斯 MSG Sphere 外景</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/DzgebAFRMoXgZyxLdyxcNl95nvh" alt="动态作品 · 球面网格与悬浮球体" loading="lazy"><div class="cap"><b>动态作品</b> · 球面网格与悬浮球体</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/V8mFbp6AwoN01Lx4YdYcrpogn1f" alt="动态作品 · 水下森林舞台" loading="lazy"><div class="cap"><b>动态作品</b> · 水下森林舞台</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/CCuSbAnelolugFxyADxcl4K9nM0" alt="动态作品 · 机械结构投影" loading="lazy"><div class="cap"><b>动态作品</b> · 机械结构投影</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/GosgbpUCUoXMuUx8cQCckVZNnch" alt="动态作品 · 深蓝穹顶影像" loading="lazy"><div class="cap"><b>动态作品</b> · 深蓝穹顶影像</div></div>
+    </div>
+    <p class="note stagger">六支柱对照：Shows 展演 · Research 研究 · Tools 工具 · Residencies 驻留 · Training 教学 · Networks 网络；本工坊需补驻留机制与对外网络板块。自研缺口：球面叙事语法、AI 球面一致性、世界模型交互。图集素材供稿自光点 2026 工作坊推文，仅作内部汇报演示。</p>
   </section>
 
   <!-- 12 SceneForge 预演系统 -->
