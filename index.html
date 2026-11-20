@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仰观工坊 · 空间叙事与世界模型</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --bg:#0b0f14; --bg2:#11171f; --ink:#e8edf2; --muted:#8a97a5;
+  --teal:#5eead4; --gold:#c9a36a; --line:rgba(255,255,255,.12);
+  --serif:"Noto Serif SC", Georgia, serif; --sans:"Noto Sans SC", -apple-system, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+button{font-family:var(--sans)}
+
+/* 顶栏 */
+.topbar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
+  padding:18px 32px;z-index:20;font-size:13px;color:var(--muted);letter-spacing:.08em}
+.topbar .brand{font-family:var(--serif);color:var(--ink);letter-spacing:.2em}
+.topbar .counter{font-variant-numeric:tabular-nums}
+
+/* 视图容器 */
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:72px 8vw 88px}
+.view{position:absolute;inset:72px 8vw 88px;display:none;flex-direction:column;justify-content:center;gap:22px;
+  opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease;overflow:auto}
+.view.active{display:flex;opacity:1;transform:translateY(0)}
+.view.entering{animation:viewIn .55s ease both}
+@keyframes viewIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.kicker{color:var(--teal);font-size:13px;letter-spacing:.32em;text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,5vw,58px);line-height:1.15}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(26px,3.2vw,38px);line-height:1.2}
+.lead{color:var(--muted);font-size:clamp(15px,1.4vw,18px);max-width:720px;line-height:1.8}
+.accent{color:var(--gold)}
+
+/* 网格卡片 */
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px;
+  transition:transform .3s ease,border-color .3s ease}
+.card:hover{transform:translateY(-4px);border-color:rgba(94,234,212,.35)}
+.card h3{font-family:var(--serif);font-size:19px;margin-bottom:10px;color:var(--ink)}
+.card p{color:var(--muted);font-size:14px;line-height:1.7}
+.card .tag{display:inline-block;font-size:12px;color:var(--teal);border:1px solid rgba(94,234,212,.35);
+  border-radius:999px;padding:2px 10px;margin-bottom:10px}
+.card .gold{color:var(--gold)}
+
+/* 时间线 */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.tl-node{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px}
+.tl-node .date{color:var(--gold);font-size:13px;letter-spacing:.12em;margin-bottom:8px}
+.tl-node h3{font-family:var(--serif);font-size:18px;margin-bottom:8px}
+.tl-node p{color:var(--muted);font-size:14px;line-height:1.7}
+
+/* 对照双栏 */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col{border:1px solid var(--line);border-radius:16px;padding:24px}
+.col h3{font-family:var(--serif);margin-bottom:14px;font-size:18px}
+.col.pain{border-color:rgba(201,163,106,.3)}
+.col.gain h3{color:var(--teal)}
+ul.tight{list-style:none;display:flex;flex-direction:column;gap:12px}
+ul.tight li{color:var(--muted);font-size:14px;line-height:1.7;padding-left:18px;position:relative}
+ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.col.gain ul.tight li::before{background:var(--teal)}
+
+/* 路线轴 */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.road .step{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px;position:relative}
+.road .step .yr{font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:10px}
+.road .step p{color:var(--muted);font-size:14px;line-height:1.7}
+
+/* 架构图 */
+.arch{display:flex;flex-direction:column;gap:14px;align-items:center}
+.arch .layer{width:100%;max-width:760px;border:1px solid var(--line);border-radius:14px;padding:16px 22px;background:var(--bg2)}
+.arch .layer b{font-family:var(--serif)}
+.arch .layer span{color:var(--muted);font-size:14px}
+.arch .cross{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.chip{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+
+/* 工具映射表 */
+.toolmap{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.tool{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg2)}
+.tool .t-name{font-family:var(--serif);color:var(--teal);font-size:15px}
+.tool .t-meta{color:var(--muted);font-size:12px;margin-top:4px}
+.tool .t-dir{color:var(--gold);font-size:12px;margin-top:6px}
+
+/* 底部导航 */
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;
+  padding:18px 32px;z-index:20}
+.nav button{background:var(--bg2);border:1px solid var(--line);color:var(--ink);border-radius:10px;
+  width:42px;height:42px;cursor:pointer;font-size:18px;transition:border-color .2s}
+.nav button:hover{border-color:var(--teal)}
+.dots{display:flex;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .25s}
+.dot.on{background:var(--teal);width:22px;border-radius:999px}
+
+/* 封面穹顶动画 */
+.hero-wrap{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+.dome-svg{width:min(420px,60vw);height:auto}
+.dome-svg .arc{fill:none;stroke:rgba(94,234,212,.25);stroke-width:1}
+.dome-svg .star{fill:var(--teal);animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.9}}
+.dome-svg .orbit{transform-origin:210px 210px;animation:spin 24s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-sub{color:var(--muted);letter-spacing:.18em;font-size:14px}
+
+/* 进入动画的子元素 */
+.view.active .stagger{animation:rise .6s ease both}
+.view.active .stagger:nth-child(2){animation-delay:.08s}
+.view.active .stagger:nth-child(3){animation-delay:.16s}
+.view.active .stagger:nth-child(4){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.note{font-size:12px;color:var(--muted)}
+@media (max-width:900px){
+  .g3,.g2,.timeline,.road,.compare,.toolmap{grid-template-columns:1fr}
+  .view{inset:64px 6vw 80px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">仰观工坊 · YANGGUAN DOME STUDIO</div>
+  <div class="counter" id="counter">01 / 13</div>
+</div>
+
+<main class="stage">
+
+  <!-- 0 封面 -->
+  <section class="view" data-title="封面">
+    <div class="hero-wrap">
+      <svg class="dome-svg" viewBox="0 0 420 240" aria-label="穹顶示意">
+        <path class="arc" d="M30 220 A180 180 0 0 1 390 220"/>
+        <path class="arc" d="M70 220 A140 140 0 0 1 350 220" opacity=".6"/>
+        <path class="arc" d="M110 220 A100 100 0 0 1 310 220" opacity=".4"/>
+        <g class="orbit">
+          <circle class="star" cx="210" cy="40" r="3"/>
+          <circle class="star" cx="330" cy="150" r="2.4"/>
+          <circle class="star" cx="90" cy="150" r="2.4"/>
+        </g>
+        <circle class="star" cx="180" cy="90" r="2"/>
+        <circle class="star" cx="250" cy="120" r="2"/>
+        <circle class="star" cx="220" cy="70" r="1.8"/>
+      </svg>
+      <div class="kicker stagger">穹顶内容制作工坊 · 建设方案汇报</div>
+      <h1 class="stagger">仰观工坊</h1>
+      <div class="hero-sub stagger">空间叙事与世界模型 · SPATIAL NARRATIVE &amp; WORLD MODEL</div>
+      <p class="lead stagger" style="text-align:center">以球面叙事立理论招牌，以 AI 世界模型占技术前沿，以节展与内容库实现工坊自我造血。</p>
+    </div>
+  </section>
+
+  <!-- 1 任务脉络总览 -->
+  <section class="view" data-title="任务脉络">
+    <div class="kicker stagger">OVERVIEW</div>
+    <h2 class="stagger">本次工作脉络</h2>
+    <div class="grid g3">
+      <div class="card stagger"><div class="tag">线索一</div><h3>设备背景调查</h3><p>现场照片无品牌标识与铭牌，未能锁定厂家；后续判断以公开行业资料为准。</p></div>
+      <div class="card stagger"><div class="tag">线索二</div><h3>作品与趋势</h3><p>里斯本 Mapping、FDUK 入选、同济 AI 分享；形成 AI 提效、世界模型、集体沉浸三条判断。</p></div>
+      <div class="card stagger"><div class="tag">线索三</div><h3>场地与节展</h3><p>梳理国内外天文馆、高校实验室与文旅场馆；ICFF 六节展及国内征集通道。</p></div>
+      <div class="card stagger"><div class="tag">线索四</div><h3>工坊方案</h3><p>命名论证、五个研究方向、三层架构、课程体系、三年路线图与可持续机制。</p></div>
+      <div class="card stagger"><div class="tag">线索五</div><h3>SAT 对标</h3><p>8 项工具按方向映射，六支柱对照三层架构，明确可复用工具与自研缺口。</p></div>
+      <div class="card stagger"><div class="tag">产物清单</div><h3>四份交付物</h3><p>精简方案书、详细说明文稿、13 页汇报幻灯片、本网页演示版。</p></div>
+    </div>
+  </section>
+
+  <!-- 2 背景与契机 -->
+  <section class="view" data-title="背景与契机">
+    <div class="kicker stagger">BACKGROUND</div>
+    <h2 class="stagger">三次现场实践，拼出工坊的起点</h2>
+    <div class="timeline">
+      <div class="tl-node stagger">
+        <div class="date">2026.09.19 · 葡萄牙里斯本</div>
+        <h3>国家剧院建筑 Mapping</h3>
+        <p>玛丽亚二世女王国家剧院，20 国艺术家作品同台，带入国内创作者作品；夜间大型 Mapping 派对融合 ZENØR1、Beatbomber、DJ Marfox 的音乐。</p>
+      </div>
+      <div class="tl-node stagger">
+        <div class="date">2026.10.09–10 · 英国 FDUK</div>
+        <h3>《Vanished - Seeking》入选</h3>
+        <p>作品入选 Fulldome UK 2026；约 40 国 155 部作品竞选，为十几年最激烈一届。FDUK 属 ICFF 国际球幕联盟。</p>
+      </div>
+      <div class="tl-node stagger">
+        <div class="date">同济分享 · AI 球幕创作</div>
+        <h3>算力周期被压缩一个数量级</h3>
+        <p>三维场景、多物体镜头运动、材质与灯光搭建，十几分钟算力完成；一年前同样流程需手搓数小时。AI 正在重写特种影像生产。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 痛点与机会 -->
+  <section class="view" data-title="痛点与机会">
+    <div class="kicker stagger">MARKET</div>
+    <h2 class="stagger">瓶颈在内容，不在硬件</h2>
+    <div class="compare">
+      <div class="col pain stagger">
+        <h3>行业痛点</h3>
+        <ul class="tight">
+          <li>引进片 20–30 万元/部，原创片周期 18–24 个月、成本 300–800 万元</li>
+          <li>单片生命周期仅 1–2 年，中小场馆无力更新、常年播旧片</li>
+          <li>能做球幕内容的创作者与公司稀缺，球面适配经验依赖个人</li>
+          <li>场馆吞吐量有物理上限，票价与场均人次承压，回本周期长</li>
+          <li>超大场馆属重资产单点模式，不可复制；堆硬件博眼球风险高</li>
+        </ul>
+      </div>
+      <div class="col gain stagger">
+        <h3>结构性机会</h3>
+        <ul class="tight">
+          <li>AI 先攻破场景、镜头、材质灯光等高耗时环节，原创门槛下降</li>
+          <li>世界模型走向实时图到实时视频与交互，内容稀缺有望解除</li>
+          <li>多人同时在场的集体沉浸，是球幕对抗单人 VR 的独有壁垒</li>
+          <li>增长动力从场馆新建转向存量升级、内容运营与多场景渗透</li>
+          <li>分布式中小场馆（科技馆、校园、文旅）可复制、可下沉</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 定位与命名 -->
+  <section class="view" data-title="定位与命名">
+    <div class="kicker stagger">POSITIONING</div>
+    <h2 class="stagger">锚定媒介特性，不被设备锁死</h2>
+    <div class="grid g2">
+      <div class="card stagger">
+        <div class="tag">学科方向 · 正式名</div>
+        <h3>空间叙事与世界模型</h3>
+        <p>英文 Spatial Narrative &amp; World Model。上接叙事学与电影学，下接 AI 世界模型，可挂靠戏剧影视、设计学与计算机方向。备选：<span class="gold">球面叙事与沉浸式影像</span>。</p>
+      </div>
+      <div class="card stagger">
+        <div class="tag">工坊品牌</div>
+        <h3>「仰观」工坊</h3>
+        <p>YangGuan Dome Studio，典出《周易》“仰以观于天文”，暗合仰头观看穹顶的动作。备选品牌：<span class="gold">「环中」实验室</span>，取《庄子》“得其环中，以应无穷”。</p>
+      </div>
+      <div class="card stagger">
+        <div class="tag">命名原则</div>
+        <h3>不叫“球幕工程 / 球幕技术”</h3>
+        <p>投影机、LED 球体会换代，但“球面空间里的叙事规律”是永久命题；学科名锚定媒介与方法，避免被封进设备采购赛道。</p>
+      </div>
+      <div class="card stagger">
+        <div class="tag">一句话定位</div>
+        <h3>集体沉浸的内容工坊</h3>
+        <p>研究穹顶专属的叙事语法与生成工具链，产出可流转、可参展、可落地的球幕作品，连接高校教学、科普场馆与文旅场景。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 五大方向总览 -->
+  <section class="view" data-title="研究方向总览">
+    <div class="kicker stagger">RESEARCH</div>
+    <h2 class="stagger">五个排他性研究方向</h2>
+    <div class="grid g3">
+      <div class="card stagger"><div class="tag">优先级 ① 理论护城河</div><h3>球面叙事学</h3><p>仰头观看的注意力分配、球面镜头运动、空间因果与集体观看节奏。</p></div>
+      <div class="card stagger"><div class="tag">优先级 ② 技术壁垒</div><h3>AI 球面生成一致性</h3><p>单图/文本到 360° 球幕的畸变、接缝、时空连贯与实时渲染。</p></div>
+      <div class="card stagger"><div class="tag">优先级 ③ 前沿占位</div><h3>世界模型可交互穹顶</h3><p>群体动作与位置驱动场景实时演化，从放预录影片到可进入的环境。</p></div>
+      <div class="card stagger"><div class="tag">交叉方法</div><h3>集体在场感人因实证</h3><p>区别于 VR 单人 presence，量化多人共享空间的情绪同步与注意力。</p></div>
+      <div class="card stagger"><div class="tag">体验闭环</div><h3>穹顶多模态协同</h3><p>Ambisonics 环绕声、触觉、4D 与叙事节奏的匹配方法论。</p></div>
+      <div class="card stagger"><div class="tag">产出形态</div><h3>论文 · 专利 · 工具链 · 作品</h3><p>理论框架、发明专利、开源工具与节展作品并行，形成可累积的资产。</p></div>
+    </div>
+  </section>
+
+  <!-- 5 方向 ①② -->
+  <section class="view" data-title="方向 ①②">
+    <div class="kicker stagger">DIRECTIONS 1–2</div>
+    <h2 class="stagger">理论立身，技术立身</h2>
+    <div class="grid g2">
+      <div class="card stagger">
+        <h3>① 球面叙事学 Dome Narratology</h3>
+        <p style="margin-bottom:10px">电影叙事学研究矩形画框，尚无体系化的“球面画框叙事规律”。</p>
+        <ul class="tight">
+          <li>研究问题：仰头视角下注意力如何在 360° 球面分配、空间因果如何建立、集体观看节奏如何编排</li>
+          <li>方法：艺术理论 × 认知心理学交叉，结合作品实验与观众观测</li>
+          <li>排他性：理论空白可沉淀为教材、课程标准与学术标签，他人追设备追不走</li>
+        </ul>
+      </div>
+      <div class="card stagger">
+        <h3>② AI 球面生成时空一致性</h3>
+        <p style="margin-bottom:10px">通用视频模型不解决球面问题，这里有明确的技术问题链。</p>
+        <ul class="tight">
+          <li>研究问题：投影映射、球面接缝、帧间一致、多机融合与实时化</li>
+          <li>方法：计算机 × 影视创作协作，做模型适配与工具链封装</li>
+          <li>排他性：产出论文、发明专利与开源工具链，技术壁垒清晰可见</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 方向 ③④⑤ -->
+  <section class="view" data-title="方向 ③④⑤">
+    <div class="kicker stagger">DIRECTIONS 3–5</div>
+    <h2 class="stagger">交互、人因与多模态闭环</h2>
+    <div class="grid g3">
+      <div class="card stagger">
+        <h3>③ 世界模型可交互穹顶</h3>
+        <p>群体输入驱动穹顶场景实时演化。目前全球只有零星实验，先做出可运行原型与理论框架，即成为细分定义者。</p>
+      </div>
+      <div class="card stagger">
+        <h3>④ 集体在场感实证</h3>
+        <p>设计可测指标：心率同步、注意力分布、情绪传染、群体评价；把穹顶从设备抬升为可研究的媒介现象，心理学与传播学院天然愿意合作。</p>
+      </div>
+      <div class="card stagger">
+        <h3>⑤ 多模态协同设计</h3>
+        <p>环绕声、触觉座椅、气流等与叙事节奏的匹配规律；行业目前依赖老师傅经验，可形成可教学的设计方法论。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 组织架构 -->
+  <section class="view" data-title="组织架构">
+    <div class="kicker stagger">STRUCTURE</div>
+    <h2 class="stagger">挂靠成熟母体，跨学科组网</h2>
+    <div class="arch">
+      <div class="layer stagger"><b>母体挂靠</b>　<span>数字媒体艺术 / 戏剧与影视学 / 设计学之一，负责学位授予与招生；不自建孤立学科</span></div>
+      <div class="cross stagger">
+        <span class="chip">计算机：世界模型 · 实时渲染</span>
+        <span class="chip">心理学：在场感实验</span>
+        <span class="chip">天文 / 科普：内容出口</span>
+        <span class="chip">新闻传播：公共传播</span>
+      </div>
+      <div class="layer stagger"><b>课程层</b>　<span>本科模块课：球面叙事基础、AI 沉浸式内容生成、穹顶声音与交互设计</span></div>
+      <div class="layer stagger"><b>工坊层</b>　<span>项目制组队，做节展参赛片与落地委托项目，导师制带教</span></div>
+      <div class="layer stagger"><b>研究中心层</b>　<span>承接横向与基金，发布年度白皮书与作品集，形成学术声誉</span></div>
+    </div>
+  </section>
+
+  <!-- 8 课程体系 -->
+  <section class="view" data-title="课程体系">
+    <div class="kicker stagger">CURRICULUM</div>
+    <h2 class="stagger">三模块 + 实践制 / 导师制</h2>
+    <div class="grid g3">
+      <div class="card stagger"><div class="tag">模块一</div><h3>球面叙事基础</h3><p>穹顶语法、视角与注意力、空间因果、集体节奏；经典 fulldome 作品拉片与习作。</p></div>
+      <div class="card stagger"><div class="tag">模块二</div><h3>AI 沉浸式内容生成</h3><p>场景生成、镜头运动、材质灯光、球面一致性校正；本地推理与离线场馆部署。</p></div>
+      <div class="card stagger"><div class="tag">模块三</div><h3>穹顶声音与交互设计</h3><p>空间音频、跟踪与姿态捕捉、群体交互、触觉与多模态协同原型。</p></div>
+    </div>
+    <p class="note stagger">课程梯队可参照 SAT 四档：晚间课程、职业培训、创作工作坊、青少年夏令营。</p>
+  </section>
+
+  <!-- 9 三年路线图 -->
+  <section class="view" data-title="三年路线图">
+    <div class="kicker stagger">ROADMAP</div>
+    <h2 class="stagger">三年三步走</h2>
+    <div class="road">
+      <div class="step stagger"><div class="yr">Y1 · 起步</div><p>工坊挂牌；三模块课程开出；首战 ICFF 节展；完成一部代表性 fulldome 作品；跑通 AI 辅助工作流模板。</p></div>
+      <div class="step stagger"><div class="yr">Y2 · 拓展</div><p>研究方向立项；作品版权库雏形；承接科技馆 / 文旅横向委托；跨院系实验课题落地；驻留机制开放。</p></div>
+      <div class="step stagger"><div class="yr">Y3 · 收获</div><p>形成学科声誉；内容库可流转授权；发布白皮书与年度作品集；毕业生进入球幕与沉浸式行业。</p></div>
+    </div>
+  </section>
+
+  <!-- 10 可持续与节展 -->
+  <section class="view" data-title="可持续与节展">
+    <div class="kicker stagger">SUSTAINABILITY</div>
+    <h2 class="stagger">五条现金流 + 评价改革</h2>
+    <div class="grid g2">
+      <div class="card stagger">
+        <h3>五条收入线</h3>
+        <ul class="tight">
+          <li>政府 / 艺术基金 / 科普专项申报</li>
+          <li>科技馆、文旅目的地片源采购与定制横向</li>
+          <li>ICFF 节展履历与获奖带来的项目机会</li>
+          <li>学生作品版权库流转、出租与授权</li>
+          <li>校本课程、科普研学与工作坊收费</li>
+        </ul>
+      </div>
+      <div class="card stagger">
+        <h3>评价与出口</h3>
+        <ul class="tight">
+          <li>评价改革：节展入选、落地放映、传播量与论文同等认定</li>
+          <li>国际通道：Jena、FDUK、Dome Fest West、Dome Under、SAT Montréal、Brno</li>
+          <li>国内通道：北影节科技单元、北京天文馆剧本大赛、各省科技馆采购</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 对标 SAT -->
+  <section class="view" data-title="对标 SAT">
+    <div class="kicker stagger">BENCHMARK · SAT MONTRÉAL</div>
+    <h2 class="stagger">可复用工具链与六支柱生态</h2>
+    <div class="toolmap">
+      <div class="tool"><div class="t-name">SpatGRIS</div><div class="t-meta">256 声源 × 256 扬声器空间音频；GPLv3</div><div class="t-dir">对应方向 ⑤ 多模态协同</div></div>
+      <div class="tool"><div class="t-name">Spatial Protocol Mapper</div><div class="t-meta">一路 OSC 并行分发多空间化器；跨平台</div><div class="t-dir">对应方向 ③ 交互总线</div></div>
+      <div class="tool"><div class="t-name">LivePose</div><div class="t-meta">本地 ONNX 姿态 / 目标检测，OSC 输出；AGPLv3/商业</div><div class="t-dir">对应方向 ③④ 交互与在场感</div></div>
+      <div class="tool"><div class="t-name">Koaia</div><div class="t-meta">舞台实时 AI 图像生成，多模型与图层混合</div><div class="t-dir">对应方向 ② 实时生成段</div></div>
+      <div class="tool"><div class="t-name">Carto</div><div class="t-meta">无标记群体跟踪，深度相机 + LiDAR，100+ 人</div><div class="t-dir">对应方向 ④ 集体交互</div></div>
+      <div class="tool"><div class="t-name">Domeport</div><div class="t-meta">浏览器 / 客户端穹顶预演器，成片先在 3D 穹顶检查</div><div class="t-dir">教学与预演工具</div></div>
+    </div>
+    <p class="note stagger">六支柱对照：Shows 展演 · Research 研究 · Tools 工具 · Residencies 驻留 · Training 教学 · Networks 网络；本工坊需补驻留机制与对外网络板块。自研缺口：球面叙事语法、AI 球面一致性、世界模型交互。</p>
+  </section>
+
+</main>
+
+<nav class="nav">
+  <button id="prev" aria-label="上一页">‹</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="下一页">›</button>
+</nav>
+
+<script>
+(function(){
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var dots = document.getElementById('dots');
+  var counter = document.getElementById('counter');
+  var idx = 0;
+
+  views.forEach(function(v,i){
+    var d=document.createElement('div');
+    d.className='dot'+(i===0?' on':'');
+    d.addEventListener('click',function(){go(i)});
+    dots.appendChild(d);
+  });
+  var dotEls=Array.prototype.slice.call(dots.children);
+
+  function pad(n){return (n<10?'0':'')+n}
+  function render(){
+    views.forEach(function(v,i){v.classList.toggle('active',i===idx);});
+    dotEls.forEach(function(d,i){d.classList.toggle('on',i===idx);});
+    counter.textContent=pad(idx+1)+' / '+pad(views.length);
+    var v=views[idx];
+    v.classList.remove('entering');void v.offsetWidth;v.classList.add('entering');
+    if(location.hash!=='#'+idx){history.replaceState(null,'','#'+idx);}
+  }
+  function go(i){
+    idx=Math.max(0,Math.min(views.length-1,i));
+    render();
+  }
+  document.getElementById('prev').addEventListener('click',function(){go(idx-1)});
+  document.getElementById('next').addEventListener('click',function(){go(idx+1)});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown')go(idx+1);
+    if(e.key==='ArrowLeft'||e.key==='PageUp')go(idx-1);
+  });
+  var h=parseInt(location.hash.replace('#',''),10);
+  if(!isNaN(h)&&h>=0&&h<views.length)idx=h;
+  render();
+})();
+</script>
+</body>
+</html>
