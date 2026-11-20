@@ -48,6 +48,13 @@ python3 -m http.server 8080
 
 素材均为 Suite SAT / 各工具官方站点的外链引用，未打包进本仓库；若官方站点迁移或更换资源路径，需同步替换面板中的 URL。
 
+## SAT 对标页补充内容（来自公众号供稿）
+
+- 机构与硬件数据条：SAT 1996 年成立；Satosphere 2011 年开放，210° 视角 × 360° 球面、8 台激光投影机、157 只扬声器 / 93.5 声道、SATIE 空间音频引擎发源地；驻留沉淀 180+ 部穹顶作品；18 米穹顶参数为 Derivative domeViewer 预制组件基准。
+- 标杆案例卡：Jules Roze《Syntropie》（Dome Fest West 2022 最佳音乐短片），含创作理念、后续作品与 TouchDesigner 工作坊流程。
+- 资源四象限·赛事通道：补入光点·国际新媒体艺术节（TouchDesigner 教学体系、Moment Factory 球幕经验分享）。
+- 供稿文章中的视频 / GIF 尚未提供附件，待素材到位后内嵌到案例卡与对应工具面板。
+
 ## 预演系统子链接说明
 
 - 第 15 页内嵌 iframe 指向本机 `http://127.0.0.1:5175/`（SceneForge Stage Viewer），并附新标签页打开按钮。
