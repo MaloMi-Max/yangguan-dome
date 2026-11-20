@@ -40,6 +40,7 @@ h2{font-family:var(--serif);font-weight:700;font-size:clamp(26px,3.2vw,38px);lin
 .grid{display:grid;gap:18px}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g2{grid-template-columns:repeat(2,1fr)}
+.quad{grid-template-columns:repeat(2,1fr)}
 .card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px;
   transition:transform .3s ease,border-color .3s ease}
 .card:hover{transform:translateY(-4px);border-color:rgba(94,234,212,.35)}
@@ -117,7 +118,7 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 
 .note{font-size:12px;color:var(--muted)}
 @media (max-width:900px){
-  .g3,.g2,.timeline,.road,.compare,.toolmap{grid-template-columns:1fr}
+  .g3,.g2,.quad,.timeline,.road,.compare,.toolmap{grid-template-columns:1fr}
   .view{inset:64px 6vw 80px}
 }
 </style>
@@ -126,7 +127,7 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 
 <div class="topbar">
   <div class="brand">仰观工坊 · YANGGUAN DOME STUDIO</div>
-  <div class="counter" id="counter">01 / 13</div>
+  <div class="counter" id="counter">01 / 14</div>
 </div>
 
 <main class="stage">
@@ -187,6 +188,54 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
         <div class="date">同济分享 · AI 球幕创作</div>
         <h3>算力周期被压缩一个数量级</h3>
         <p>三维场景、多物体镜头运动、材质与灯光搭建，十几分钟算力完成；一年前同样流程需手搓数小时。AI 正在重写特种影像生产。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 资源四象限 -->
+  <section class="view" data-title="资源四象限">
+    <div class="kicker stagger">LANDSCAPE</div>
+    <h2 class="stagger">场地、机构、赛事与设备盘点</h2>
+    <div class="grid quad">
+      <div class="card stagger">
+        <div class="tag">象限一 · 场馆与科普渠道</div>
+        <h3>落地放映与片源采购出口</h3>
+        <ul class="tight">
+          <li>北京天文馆天象厅：直径 23 米，蔡司天象仪＋8K 放映、13.1 声道，约 400 座</li>
+          <li>北京天文馆宇宙剧场：直径 18 米，约 200 座</li>
+          <li>中国科技馆及各地科技馆／天文馆球幕剧场</li>
+          <li>沈阳科学宫、榆林科技馆等 4K／8K 升级案例</li>
+          <li>商业文旅飞行球幕</li>
+        </ul>
+      </div>
+      <div class="card stagger">
+        <div class="tag">象限二 · 高校与研究机构</div>
+        <h3>可协作的学术与实验空间</h3>
+        <ul class="tight">
+          <li>同济非平面影像实验室：5.5 米 2K 球幕＋120° 环幕</li>
+          <li>广州美院球幕投影空间</li>
+          <li>北电数字媒体学院智慧广电重点实验室</li>
+          <li>清华美院沉浸式新媒体与空间叙事方向</li>
+          <li>厦大电影学院智能影像方向</li>
+        </ul>
+      </div>
+      <div class="card stagger">
+        <div class="tag">象限三 · 赛事与投稿通道</div>
+        <h3>节展履历与孵化对接</h3>
+        <ul class="tight">
+          <li>北影节科技单元「科影无界」路演：中国科技馆主办，2026 首设，含球幕片征集，入围对接制片孵化</li>
+          <li>片规格：20–50 分钟、2D、PNG 序列帧或 20 通道 MKV、30／60FPS、≥4K</li>
+          <li>天文馆剧本征集、科技馆年度采购、国际 ICFF 通道</li>
+        </ul>
+      </div>
+      <div class="card stagger">
+        <div class="tag">象限四 · 设备研发单位</div>
+        <h3>硬件供给成熟，短板在内容</h3>
+        <ul class="tight">
+          <li>Barco、索尼工程投影与多机拼融</li>
+          <li>国内集成厂商：深圳观度、成都金都超星、南京天知文、北京星瞰</li>
+          <li>结论：硬件供给成熟，原创叙事与人才是主要短板</li>
+        </ul>
       </div>
     </div>
   </section>
