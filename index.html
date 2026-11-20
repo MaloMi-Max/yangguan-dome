@@ -21,8 +21,6 @@ button{font-family:var(--sans)}
   padding:18px 32px;z-index:20;font-size:13px;color:var(--muted);letter-spacing:.08em}
 .topbar .brand{font-family:var(--serif);color:var(--ink);letter-spacing:.2em}
 .topbar .counter{font-variant-numeric:tabular-nums}
-.topbar .enter-stage{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(94,234,212,.4);border-radius:999px;color:var(--teal);text-decoration:none;font-size:12px;letter-spacing:.08em;transition:background .3s ease,border-color .3s ease}
-.topbar .enter-stage:hover{background:rgba(94,234,212,.08);border-color:var(--teal)}
 
 /* 视图容器 */
 .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:72px 8vw 88px}
@@ -105,14 +103,24 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 .tp-media.two img{width:calc(50% - 6px)}
 .tp-links{display:flex;gap:12px;flex-wrap:wrap}
 
-/* SAT 数据条与案例卡 */
+/* SAT 硬件基准高亮数据条 */
+.stat-band{display:flex;flex-direction:column;gap:14px;border:1px solid rgba(94,234,212,.22);border-radius:18px;padding:20px;background:linear-gradient(160deg,rgba(94,234,212,.07),var(--bg2) 60%)}
+.band-head{display:flex;flex-direction:column;gap:6px}
+.band-head .bt{font-family:var(--serif);font-size:18px;color:var(--ink)}
+.band-head .bs{color:var(--muted);font-size:13px;line-height:1.7}
+.band-head .bs b{color:var(--gold)}
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.stat{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px}
-.stat .num{font-family:var(--serif);font-size:24px;color:var(--teal);margin-bottom:6px}
+.stat{background:rgba(8,9,11,.55);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:14px;padding:18px;transition:border-color .3s ease,transform .3s ease}
+.stat:hover{border-color:rgba(94,234,212,.4);transform:translateY(-3px)}
+.stat .num{font-family:var(--serif);font-size:30px;color:var(--teal);margin-bottom:8px;letter-spacing:.02em}
+.stat .ch{display:inline-block;font-size:11px;color:var(--gold);border:1px solid rgba(201,163,106,.35);border-radius:999px;padding:2px 10px;margin-bottom:10px}
 .stat .lbl{color:var(--muted);font-size:12.5px;line-height:1.6}
 .case-card{background:var(--bg2);border:1px solid rgba(201,163,106,.3);border-radius:16px;padding:22px}
 .case-card h3{font-family:var(--serif);font-size:19px;margin-bottom:10px}
 .case-card p{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:10px}
+
+/* 学科转型与专业改革 */
+.dir-tag{display:inline-block;font-size:12px;color:var(--teal);border:1px solid rgba(94,234,212,.35);border-radius:999px;padding:2px 10px;margin-bottom:10px}
 
 /* 供稿图集 */
 .gallery{display:grid;gap:14px}
@@ -167,7 +175,6 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
 <div class="topbar">
   <div class="brand">仰观工坊 · YANGGUAN DOME STUDIO</div>
   <div class="counter" id="counter">01 / 15</div>
-  <a class="enter-stage" href="./dome-stage/">进入穹顶舞台 ↗</a>
 </div>
 
 <main class="stage">
@@ -427,6 +434,65 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
     <p class="note stagger">课程梯队可参照 SAT 四档：晚间课程、职业培训、创作工作坊、青少年夏令营。</p>
   </section>
 
+  <!-- 学科转型与专业改革 -->
+  <section class="view" data-title="学科转型与改革方向">
+    <div class="kicker stagger">DISCIPLINE REFORM</div>
+    <h2 class="stagger">投入围绕内容展开：难点、不可替代性与专业改革方向</h2>
+    <p class="lead stagger">学科转型不是设备采购竞赛：教学安排、工具链与场地投入都围绕「可参展、可落地的穹顶内容」组织，以作品牵引课程、科研与产出。</p>
+    <div class="compare stagger">
+      <div class="col pain">
+        <h3>教学难点</h3>
+        <ul class="tight">
+          <li>球面叙事语法无现成教材：仰头视角下的注意力分配、空间因果与集体观看节奏，需从拉片与习作中逐步建立</li>
+          <li>跨学科组队教学：影视、声音、计算机、心理学按项目制协同，导师组织与评价方式需重构</li>
+          <li>AI 工具链进课堂：场景生成、镜头运动、球面一致性校正与本地部署，形成新的技能谱</li>
+          <li>范式从预录走向实时交互：现场编排、声音驱动视觉与群体输入，教与学都要积累现场经验</li>
+        </ul>
+      </div>
+      <div class="col pain">
+        <h3>技术难点</h3>
+        <ul class="tight">
+          <li>球面投影映射：投影变形、接缝处理与多机拼融的亮度一致性</li>
+          <li>上百声源空间化：声音方位、声道编排与实时渲染，区别于传统立体声混音</li>
+          <li>AI 生成球面一致性：帧间连贯、时空稳定与球面畸变校正</li>
+          <li>世界模型交互闭环：群体输入驱动场景实时演化，低延迟反馈与可运行原型</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid g2 stagger">
+      <div class="card"><div class="tag">新增不可替代性 ①</div><h3>集体在场</h3><p>多人共享同一球面空间的情绪同步与注意力，是单人 VR、耳机沉浸无法替代的壁垒。</p></div>
+      <div class="card"><div class="tag">新增不可替代性 ②</div><h3>理论身份</h3><p>球面叙事学尚属空白，可沉淀教材、课程标准与学术标签，设备换代追不走。</p></div>
+      <div class="card"><div class="tag">新增不可替代性 ③</div><h3>资产累积</h3><p>作品版权库、开源工具链与节展履历逐年流转增值，不随一届学生毕业消失。</p></div>
+      <div class="card"><div class="tag">新增不可替代性 ④</div><h3>复合能力壁垒</h3><p>球面语法 × 空间声音 × 现场交互三位一体，单一录音、游戏或动画专业难以独立覆盖。</p></div>
+    </div>
+    <div class="grid g2 stagger">
+      <div class="card">
+        <div class="tag">国际标杆 · Jules Roze《Syntropie》</div>
+        <h3>声音包裹球体，音频驱动视觉</h3>
+        <ul class="tight">
+          <li>空间化声音把观众整个包住，无角色与叙事，身处一个正在呼吸的球体内部</li>
+          <li>方法论：穹顶几何、观众仰角、声音方位在第一个像素渲染之前就已介入</li>
+          <li>2022 年获 Dome Fest West 最佳音乐短片；后续作品进入 SAT Fest 与 Patchlab</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="tag">我方路径 · 《Vanished - Seeking》</div>
+        <h3>以节展履历验证教学产出</h3>
+        <ul class="tight">
+          <li>入选 FDUK 2026：约 40 国 155 部作品竞选，为十几年最激烈一届</li>
+          <li>作为工坊 Y1 代表性作品，验证教学产出可进入国际节展通道</li>
+          <li>对照标杆补齐方法论与工具链，再扩展到实时交互与横向委托项目</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid g3 stagger">
+      <div class="card"><div class="dir-tag">录音技术 → 空间音频</div><h3>声音在球体内定位与编排</h3><p>Ambisonics 与穹顶声道编排、实时空间化引擎、声音驱动视觉的协同设计。</p></div>
+      <div class="card"><div class="dir-tag">游戏 → 实时世界与交互</div><h3>可进入、可响应的球面环境</h3><p>世界模型应用、群体输入驱动场景演化、实时渲染与交互叙事。</p></div>
+      <div class="card"><div class="dir-tag">动画 → 球面影像</div><h3>从平面分镜到 DomeMaster 成片</h3><p>球面构图与投影映射、AI 生成一致性与帧间连贯、面向穹顶的成片输出规范。</p></div>
+    </div>
+    <p class="note stagger">对照启示：标杆证明「声音—视觉—穹顶几何」方法论成立；我方先以参赛片跑通 AI 辅助工作流，再走向实时交互与委托制作。</p>
+  </section>
+
   <!-- 9 三年路线图 -->
   <section class="view" data-title="三年路线图">
     <div class="kicker stagger">ROADMAP</div>
@@ -469,16 +535,22 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
     <div class="kicker stagger">BENCHMARK · SAT MONTRÉAL</div>
     <h2 class="stagger">可复用工具链与六支柱生态</h2>
     <p class="lead stagger">SAT（Society for Arts and Technology）1996 年成立，加拿大非营利数字文化机构，集艺术中心、培训与研究于一体。其 Satosphere 穹顶 2011 年开放，比拉斯维加斯 MSG Sphere 早 12 年，是最早专为艺术创作而建的永久模块化数字穹顶之一，也是北美早期大规模实时空间音频实验阵地。</p>
-    <div class="stat-row stagger">
-      <div class="stat"><div class="num">210°</div><div class="lbl">垂直视角 × 360° 球面，支持 180°／210°／230° 画面切换</div></div>
-      <div class="stat"><div class="num">8 台</div><div class="lbl">激光投影机；18 米穹顶参数为 Derivative 官方 domeViewer 预制组件基准</div></div>
-      <div class="stat"><div class="num">157 只</div><div class="lbl">扬声器 · 93.5 声道，SATIE 空间音频引擎发源地，可实时渲染上百独立声源</div></div>
-      <div class="stat"><div class="num">180+</div><div class="lbl">驻留穹顶作品（影像／实时表演／音乐会／交互装置），早期产出最多的穹顶驻地之一</div></div>
+    <div class="stat-band stagger">
+      <div class="band-head">
+        <div class="bt">呈现技术基准 · Satosphere 硬件参数</div>
+        <div class="bs">下列参数是国际成熟穹顶的技术底座，逐项对应本工坊需攻克的<b>球面构图、多机拼融、空间声音与集体在场</b>难点。</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><span class="ch">难点 · 球面构图与仰角</span><div class="num">210°</div><div class="lbl">垂直视角 × 360° 球面，支持 180°／210°／230° 画面切换</div></div>
+        <div class="stat"><span class="ch">难点 · 多机投影拼融</span><div class="num">8 台</div><div class="lbl">激光投影机；18 米穹顶参数为 Derivative 官方 domeViewer 预制组件基准</div></div>
+        <div class="stat"><span class="ch">难点 · 上百声源空间化</span><div class="num">157 只</div><div class="lbl">扬声器 · 93.5 声道，SATIE 空间音频引擎发源地，可实时渲染上百独立声源</div></div>
+        <div class="stat"><span class="ch">参照 · 驻地内容产能</span><div class="num">180+</div><div class="lbl">驻留穹顶作品（影像／实时表演／音乐会／交互装置），早期产出最多的穹顶驻地之一</div></div>
+      </div>
     </div>
     <div class="gallery gal-3 stagger">
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OPqDbQMtHokKgOx6IQJcgus7nah" alt="Satosphère 穹顶外景" loading="lazy"><div class="cap"><b>Satosphère 穹顶外景</b> · 蒙特利尔 SAT 园区</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/YfmqbS2axonuIpxD56Fco4mnnzc" alt="SAT 创意生态版图" loading="lazy"><div class="cap"><b>SAT 创意生态版图</b> · Satosphère / Pavillon / Espace SAT / Café SAT × Mutek · Hubblio</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/EKYebiEq9oTiqIxQtAJc5jpAnrd" alt="环绕式厅内现场" loading="lazy"><div class="cap"><b>环绕式厅内现场</b> · 观众席地而坐，被球面画面包裹</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OPqDbQMtHokKgOx6IQJcgus7nah" alt="Satosphère 穹顶外景"><div class="cap"><b>Satosphère 穹顶外景</b> · 蒙特利尔 SAT 园区</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/YfmqbS2axonuIpxD56Fco4mnnzc" alt="SAT 创意生态版图"><div class="cap"><b>SAT 创意生态版图</b> · Satosphère / Pavillon / Espace SAT / Café SAT × Mutek · Hubblio</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/EKYebiEq9oTiqIxQtAJc5jpAnrd" alt="环绕式厅内现场"><div class="cap"><b>环绕式厅内现场</b> · 观众席地而坐，被球面画面包裹</div></div>
     </div>
     <div class="toolmap" id="toolmap">
       <div class="tool" data-tool="spatgris" role="button" tabindex="0"><div class="t-name">SpatGRIS</div><div class="t-meta">256 声源 × 256 扬声器空间音频；GPLv3</div><div class="t-dir">对应方向 ⑤ 多模态协同</div><div class="t-hint">查看工具演示 ↗</div></div>
@@ -489,11 +561,11 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
       <div class="tool" data-tool="domeport" role="button" tabindex="0"><div class="t-name">Domeport</div><div class="t-meta">浏览器 / 客户端穹顶预演器，成片先在 3D 穹顶检查</div><div class="t-dir">教学与预演工具</div><div class="t-hint">查看工具演示 ↗</div></div>
     </div>
     <div class="gallery gal-3 stagger">
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Bwkfb4LyMoYiaLxGnnAcAG1mnvb" alt="穹顶光影现场 · 蓝色线构空间" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 蓝色线构空间</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/ZfMUbO7uGoGtsCxy5OrcmzHGnXg" alt="穹顶光影现场 · 光流复合体" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 光流复合体</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/IpO8bh2l2oKYzrxfFwRcWhQrnLb" alt="穹顶光影现场 · 像素螺旋" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 像素螺旋</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JHZJbJej6oYHlLxejjGcZto4nXd" alt="穹顶光影现场 · 螺旋线条与躺卧观众" loading="lazy"><div class="cap"><b>穹顶光影现场</b> · 螺旋线条与躺卧观众</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/T4xPb9QWPoRFZ7xJKNxctAYenUb" alt="现场实时 A/V 演出" loading="lazy"><div class="cap"><b>现场实时 A/V 演出</b> · 创作者控制台与球面投影</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Bwkfb4LyMoYiaLxGnnAcAG1mnvb" alt="穹顶光影现场 · 蓝色线构空间"><div class="cap"><b>穹顶光影现场</b> · 蓝色线构空间</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/ZfMUbO7uGoGtsCxy5OrcmzHGnXg" alt="穹顶光影现场 · 光流复合体"><div class="cap"><b>穹顶光影现场</b> · 光流复合体</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/IpO8bh2l2oKYzrxfFwRcWhQrnLb" alt="穹顶光影现场 · 像素螺旋"><div class="cap"><b>穹顶光影现场</b> · 像素螺旋</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JHZJbJej6oYHlLxejjGcZto4nXd" alt="穹顶光影现场 · 螺旋线条与躺卧观众"><div class="cap"><b>穹顶光影现场</b> · 螺旋线条与躺卧观众</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/T4xPb9QWPoRFZ7xJKNxctAYenUb" alt="现场实时 A/V 演出"><div class="cap"><b>现场实时 A/V 演出</b> · 创作者控制台与球面投影</div></div>
     </div>
     <div class="card case-card stagger">
       <div class="tag">标杆案例 · Jules Roze《Syntropie》</div>
@@ -507,12 +579,12 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
       </ul>
     </div>
     <div class="gallery gal-3 stagger">
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/BMQubTV2poliEtx0yFHcdEdJnyU" alt="动态现场 · 灯光笔触与观众席" loading="lazy"><div class="cap"><b>动态现场</b> · 灯光笔触与观众席</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OEbabMQ6ao8GrBxNQBicQ28nnBw" alt="对照参照 · 拉斯维加斯 MSG Sphere 外景" loading="lazy"><div class="cap"><b>对照参照</b> · 拉斯维加斯 MSG Sphere 外景</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/DzgebAFRMoXgZyxLdyxcNl95nvh" alt="动态作品 · 球面网格与悬浮球体" loading="lazy"><div class="cap"><b>动态作品</b> · 球面网格与悬浮球体</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/V8mFbp6AwoN01Lx4YdYcrpogn1f" alt="动态作品 · 水下森林舞台" loading="lazy"><div class="cap"><b>动态作品</b> · 水下森林舞台</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/CCuSbAnelolugFxyADxcl4K9nM0" alt="动态作品 · 机械结构投影" loading="lazy"><div class="cap"><b>动态作品</b> · 机械结构投影</div></div>
-      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/GosgbpUCUoXMuUx8cQCckVZNnch" alt="动态作品 · 深蓝穹顶影像" loading="lazy"><div class="cap"><b>动态作品</b> · 深蓝穹顶影像</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/BMQubTV2poliEtx0yFHcdEdJnyU" alt="动态现场 · 灯光笔触与观众席"><div class="cap"><b>动态现场</b> · 灯光笔触与观众席</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OEbabMQ6ao8GrBxNQBicQ28nnBw" alt="对照参照 · 拉斯维加斯 MSG Sphere 外景"><div class="cap"><b>对照参照</b> · 拉斯维加斯 MSG Sphere 外景</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/DzgebAFRMoXgZyxLdyxcNl95nvh" alt="动态作品 · 球面网格与悬浮球体"><div class="cap"><b>动态作品</b> · 球面网格与悬浮球体</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/V8mFbp6AwoN01Lx4YdYcrpogn1f" alt="动态作品 · 水下森林舞台"><div class="cap"><b>动态作品</b> · 水下森林舞台</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/CCuSbAnelolugFxyADxcl4K9nM0" alt="动态作品 · 机械结构投影"><div class="cap"><b>动态作品</b> · 机械结构投影</div></div>
+      <div class="gal-item"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/GosgbpUCUoXMuUx8cQCckVZNnch" alt="动态作品 · 深蓝穹顶影像"><div class="cap"><b>动态作品</b> · 深蓝穹顶影像</div></div>
     </div>
     <p class="note stagger">六支柱对照：Shows 展演 · Research 研究 · Tools 工具 · Residencies 驻留 · Training 教学 · Networks 网络；本工坊需补驻留机制与对外网络板块。自研缺口：球面叙事语法、AI 球面一致性、世界模型交互。图集素材供稿自光点 2026 工作坊推文，仅作内部汇报演示。</p>
   </section>
@@ -522,9 +594,9 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
     <div class="kicker stagger">PREVIEW SYSTEM · SCENEFORGE</div>
     <h2 class="stagger">舞台预演系统（本地子链接）</h2>
     <div class="viewer-wrap">
-      <iframe class="viewer-frame" src="./dome-stage/" title="SceneForge Stage Viewer" loading="lazy"></iframe>
-      <a class="ext-btn stagger" href="./dome-stage/" target="_blank" rel="noopener noreferrer">在新标签页打开 SceneForge 预演系统 ↗</a>
-      <p class="note stagger">预演系统已随仓库部署于 <code>dome-stage/</code> 目录，GitHub Pages 上可直接打开；本地二次开发源码见 <code>dome-stage-src/</code>。</p>
+      <iframe class="viewer-frame" src="http://127.0.0.1:5175/" title="SceneForge Stage Viewer"></iframe>
+      <a class="ext-btn stagger" href="http://127.0.0.1:5175/" target="_blank" rel="noopener noreferrer">在新标签页打开 SceneForge 预演系统 ↗</a>
+      <p class="note stagger">该入口连接本机本地服务（127.0.0.1:5175）：需先在本机运行 SceneForge 启动脚本并保持服务窗口开启，仅在同一台机器上可用。公网 Pages 与其他设备无法访问回环地址；线上演示时请替换为预演系统部署后的公开地址。</p>
     </div>
   </section>
 
@@ -704,10 +776,10 @@ ul.tight li::before{content:"";position:absolute;left:0;top:9px;width:6px;height
       tpMedia.innerHTML='<video src="'+t.video+'" poster="'+(t.poster||'')+'" autoplay loop muted controls playsinline></video>';
     }else if(t.imgs){
       tpMedia.className='tp-media two';
-      tpMedia.innerHTML=t.imgs.map(function(i){return '<img src="'+i.src+'" alt="'+esc(i.alt)+'" loading="lazy">'}).join('');
+      tpMedia.innerHTML=t.imgs.map(function(i){return '<img src="'+i.src+'" alt="'+esc(i.alt)+'">'}).join('');
     }else{
       tpMedia.className='tp-media';
-      tpMedia.innerHTML='<img src="'+t.img+'" alt="'+esc(t.imgAlt)+'" loading="lazy">';
+      tpMedia.innerHTML='<img src="'+t.img+'" alt="'+esc(t.imgAlt)+'">';
     }
     tpLinks.innerHTML=t.links.map(function(l){
       return '<a class="ext-btn" href="'+l.href+'" target="_blank" rel="noopener noreferrer">'+esc(l.label)+' ↗</a>';
