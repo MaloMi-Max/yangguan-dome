@@ -32,8 +32,21 @@ python3 -m http.server 8080
 11. 课程体系
 12. 三年路线图
 13. 可持续发展与节展通道
-14. 对标 SAT 工具链与六支柱生态
+14. 对标 SAT 工具链与六支柱生态（6 个工具卡片各带子链接详情面板）
 15. SceneForge 舞台预演系统（本机 iframe 子链接 + 新标签页打开）
+
+## SAT 工具子链接面板
+
+第 14 页 6 个工具卡片点击后展开详情面板（Esc 或「返回工具链」关闭），含官方演示素材、能力要点与官方外链：
+
+- **SpatGRIS**：官方海报图；GitHub `GRIS-UdeM/SpatGRIS`、GRIS 官网
+- **Spatial Protocol Mapper**：官方海报图；Suite SAT Creator 工具页
+- **LivePose**：官方海报图；文档站 `sat-mtl.github.io/livepose`、GitHub `sat-mtl/livepose`（演示影片为 QuickTime，在文档站内播放）
+- **Koaia**：官方海报图；文档站 `sat-mtl.github.io/koaia`（演示影片为 QuickTime，在文档站内播放）
+- **Carto**：官方界面截图 + 现场点云照片；文档站与 GitHub `sat-mtl/carto`
+- **Domeport**：内嵌官方 H.264 演示视频（`sat-mtl.github.io/DomeportPro`），另附在线 Web 版与 Native 文档链接
+
+素材均为 Suite SAT / 各工具官方站点的外链引用，未打包进本仓库；若官方站点迁移或更换资源路径，需同步替换面板中的 URL。
 
 ## 预演系统子链接说明
 
