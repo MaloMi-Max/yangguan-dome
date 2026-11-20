@@ -2,17 +2,6 @@
 
 单文件静态网页，用于汇报时配合 PPT 做动画演示。原生 HTML/CSS/JS，无构建依赖，浏览器直接打开 `index.html` 即可。
 
-## SceneForge 穹顶舞台（已随仓库部署）
-
-- 在线入口：`./dome-stage/`（GitHub Pages 发布后即可访问）
-- 二次开发源码：`dome-stage-src/`（Vite + React Three Fiber，含全局 UV 对齐、屏幕采集、同步音视频录制、SSR/Bloom）
-- 本地开发：
-  ```bash
-  cd dome-stage-src
-  npm install   # 或 pnpm install
-  npm run dev
-  ```
-
 ## 本地预览
 
 直接双击 `index.html`，或在本目录启动静态服务：
@@ -28,7 +17,7 @@ python3 -m http.server 8080
 - 底部按钮与圆点导航跳转
 - URL hash 记录当前页码，可直接分享某一页
 
-## 页面结构（15 页）
+## 页面结构（16 页）
 
 1. 封面
 2. 任务脉络总览
@@ -41,14 +30,15 @@ python3 -m http.server 8080
 9. 方向 ③ 可交互穹顶 · ④ 集体在场感 · ⑤ 多模态协同
 10. 组织架构
 11. 课程体系
-12. 三年路线图
-13. 可持续发展与节展通道
-14. 对标 SAT 工具链与六支柱生态（6 个工具卡片各带子链接详情面板）
-15. SceneForge 舞台预演系统（本机 iframe 子链接 + 新标签页打开）
+12. 学科转型与改革方向（教学难点 / 技术难点 / 新增不可替代性 / 标杆与我方作品对照 / 录音技术·游戏·动画改革方向）
+13. 三年路线图
+14. 可持续发展与节展通道
+15. 对标 SAT 工具链与六支柱生态（6 个工具卡片各带子链接详情面板）
+16. SceneForge 舞台预演系统（本机 iframe 子链接 + 新标签页打开）
 
 ## SAT 工具子链接面板
 
-第 14 页 6 个工具卡片点击后展开详情面板（Esc 或「返回工具链」关闭），含官方演示素材、能力要点与官方外链：
+第 15 页 6 个工具卡片点击后展开详情面板（Esc 或「返回工具链」关闭），含官方演示素材、能力要点与官方外链：
 
 - **SpatGRIS**：官方海报图；GitHub `GRIS-UdeM/SpatGRIS`、GRIS 官网
 - **Spatial Protocol Mapper**：官方海报图；Suite SAT Creator 工具页
@@ -64,13 +54,13 @@ python3 -m http.server 8080
 - 机构与硬件数据条：SAT 1996 年成立；Satosphere 2011 年开放，210° 视角 × 360° 球面、8 台激光投影机、157 只扬声器 / 93.5 声道、SATIE 空间音频引擎发源地；驻留沉淀 180+ 部穹顶作品；18 米穹顶参数为 Derivative domeViewer 预制组件基准。
 - 标杆案例卡：Jules Roze《Syntropie》（Dome Fest West 2022 最佳音乐短片），含创作理念、后续作品与 TouchDesigner 工作坊流程。
 - 资源四象限·赛事通道：补入光点·国际新媒体艺术节（TouchDesigner 教学体系、Moment Factory 球幕经验分享）。
-- 供稿图集（第 14 页）：8 张现场静帧（穹顶外景、SAT 生态版图、厅内现场、4 张光影现场、实时 A/V 演出）+ 6 个动态 GIF（现场笔触、MSG Sphere 对照、球面网格、水下舞台、机械结构、深蓝影像）。
+- 供稿图集（第 15 页）：8 张现场静帧（穹顶外景、SAT 生态版图、厅内现场、4 张光影现场、实时 A/V 演出）+ 6 个动态 GIF（现场笔触、MSG Sphere 对照、球面网格、水下舞台、机械结构、深蓝影像）。
 - 图集素材经去重、压缩（静帧转 JPEG，GIF 限宽 360–480、10fps 以内）后上传至豆包附件永久链接，HTML 内直接引用 `media.doubao.com` 地址；本地压缩件保留在 `assets/`，映射表见 `assets-map.json`，不随仓库推送二进制。
 - 图集仅作内部汇报演示；作品署名与具体片名以供稿方原始标注为准，当前 caption 为中性描述。
 
 ## 预演系统子链接说明
 
-- 第 12 页内嵌 iframe 已指向仓库内静态构建 `./dome-stage/`，不再依赖本机 `127.0.0.1:5175`；GitHub Pages 与本地静态服务均可直接打开。
+- 第 16 页内嵌 iframe 指向本机 `http://127.0.0.1:5175/`（SceneForge Stage Viewer），并附新标签页打开按钮。
 - 该地址为回环地址，仅在运行 SceneForge 本地服务的同一台机器上可访问；需先启动其本地服务并保持窗口开启。
 - 公网 GitHub Pages 与其他设备无法访问 `127.0.0.1`；线上演示前需将预演系统单独部署为公开地址，并替换 iframe 与按钮中的 URL。
 
